@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-5dBdys8bYkAl9qGH2qVHsbHinOu47eMLm6XqbYASE7k=' 'sha256-2e+7EBBDpnpdhnJfCvIxd9k2IoceksuUNRK+Wfo5+nY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-/q7RGgbDWdwWNZzSuCgW4/b5oahuSGdYOSU9VbIl+BY=' 'sha256-2e+7EBBDpnpdhnJfCvIxd9k2IoceksuUNRK+Wfo5+nY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Geo Dojo</title>
@@ -139,6 +139,12 @@ header {
   line-height: 1;
 }
 .brand h1 span { color: var(--accent); }
+/* The karate-chop dash between Geo and Dojo (a speed streak with a spark where it lands) */
+.brand h1 .chop { display: inline-block; height: 0.72em; width: auto; margin: 0 0.04em; vertical-align: -0.02em; overflow: visible; filter: drop-shadow(0 0 4px color-mix(in srgb, var(--sw-dot, #ffa04a) 55%, transparent)); }
+.brand h1 .chop .c1 { stop-color: var(--chop-from, #ff3fd2); }
+.brand h1 .chop .c2 { stop-color: var(--sw-dot, #ffa04a); }
+.brand h1 .chop .lines { stroke: var(--chop-from, #ff3fd2); stroke-width: 1.8; opacity: 0.6; fill: none; }
+.brand h1 .chop .spark { stroke: var(--chop-spark, #ffd29a); stroke-width: 2; fill: none; }
 .brand p { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 
 .search { position: relative; flex: 1 1 200px; max-width: 300px; }
@@ -685,7 +691,7 @@ body.standalone .mponly { display: none; } /* claude.ai-only features, hidden on
   --sw-hot: #b3157f; --sw-hot-ink: #ffffff; --sw-glow: rgba(214, 40, 170, 0.22); --sw-edge: rgba(179, 21, 127, 0.3);
   --sw-panel: rgba(255, 255, 255, 0.74); --sw-tag: #a3127a; --sw-raise: #fdf7ff; --sw-off: #eadcf0; --sw-off-ink: #5c3d66;
   --sw-bg: radial-gradient(1000px 700px at 85% -20%, rgba(255, 63, 210, 0.14), transparent 60%), radial-gradient(900px 600px at 0% 0%, rgba(63, 216, 242, 0.12), transparent 60%), linear-gradient(180deg, #fbf3ff, #eef5fb 70%);
-  --sw-title: linear-gradient(90deg, #0a7f9c, #b3157f 60%, #c25a0a); --sw-dot: #c25a0a;
+  --sw-title: linear-gradient(90deg, #0a7f9c, #b3157f 60%, #c25a0a); --sw-dot: #c25a0a; --chop-from: #b3157f; --chop-spark: #e0892f;
   --sw-btn: linear-gradient(90deg, #3fd8f2, #ff5fd8); --sw-btn-ink: #1a0617;
 }
 @media (prefers-color-scheme: dark) {
@@ -1577,7 +1583,7 @@ details.more > summary { display: none; }
    the globe the room. Wide-but-not-huge windows drop the subtitle so the header stays on one line. */
 body.playing .filters { display: none; }
 body.playing .stage { grid-template-rows: minmax(0, 1fr); }
-@media (max-width: 1200px) { .brand p { display: none; } }
+@media (max-width: 1320px) { .brand p { display: none; } }
 /* Any window under 860px tall, and any narrow window: the meters share one row, and big clue
    pictures (shapes, flags) shrink so the answers stay in view. */
 @media (max-height: 860px), (max-width: 860px) {
@@ -1999,7 +2005,7 @@ body.tutoring #cuebubble { display: none; } /* the guide says the same thing */
   <div class="sitenote" id="sitenote" role="status" hidden></div>
   <header>
     <div class="brand">
-      <h1>Geo<span>-</span>Dojo</h1>
+      <h1>Geo<span class="sr-only">-</span><svg class="chop" viewBox="0 0 46 24" aria-hidden="true" focusable="false"><defs><linearGradient id="chopgrad" x1="0" x2="1"><stop offset="0" class="c1"/><stop offset="1" class="c2"/></linearGradient></defs><path d="M2 14 L32 10 Q37 9.6 39 11.8 Q37 14.4 32 14.5 Z" fill="url(#chopgrad)"/><path class="lines" d="M5 18.5 H20 M9 5.5 H23" stroke-linecap="round"/><path class="spark" d="M41.5 6 L43.5 3.5 M42.5 12 H46 M41.5 17.5 L43.5 20.5" stroke-linecap="round"/></svg>Dojo</h1>
       <p id="sub">Field notes from around the world</p>
     </div>
     <label class="search" for="q">
@@ -2473,7 +2479,7 @@ for (const [k, f] of [["m50", "countries-50m.json"], ["m110", "countries-110m.js
 }
 </script>
 <script src="vendor.js"></script>
-<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwqkmure"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
+<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwqljeiu"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
 <script src="facts.js"></script>
 <script src="countries-info.js"></script>
 <script src="countries-extra.js"></script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-/q7RGgbDWdwWNZzSuCgW4/b5oahuSGdYOSU9VbIl+BY=' 'sha256-2e+7EBBDpnpdhnJfCvIxd9k2IoceksuUNRK+Wfo5+nY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-6iGlBy5f9vAK7UXDAKD6G7uTCAy7p54XY2mTNex21mo=' 'sha256-HUQEEmEjb8AfHQfDpUKcJAItSQ48lBCLv7Kk9DH32hQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Geo Dojo</title>
@@ -139,12 +139,14 @@ header {
   line-height: 1;
 }
 .brand h1 span { color: var(--accent); }
-/* The karate-chop dash between Geo and Dojo (a speed streak with a spark where it lands) */
-.brand h1 .chop { display: inline-block; height: 0.72em; width: auto; margin: 0 0.04em; vertical-align: -0.02em; overflow: visible; filter: drop-shadow(0 0 4px color-mix(in srgb, var(--sw-dot, #ffa04a) 55%, transparent)); }
-.brand h1 .chop .c1 { stop-color: var(--chop-from, #ff3fd2); }
-.brand h1 .chop .c2 { stop-color: var(--sw-dot, #ffa04a); }
-.brand h1 .chop .lines { stroke: var(--chop-from, #ff3fd2); stroke-width: 1.8; opacity: 0.6; fill: none; }
-.brand h1 .chop .spark { stroke: var(--chop-spark, #ffd29a); stroke-width: 2; fill: none; }
+/* The dash between Geo and Dojo: a jet flying right with a neon contrail (colours follow the skin) */
+.brand h1 .jet { display: inline-block; height: 0.72em; width: auto; margin: 0 0.04em; vertical-align: -0.02em; overflow: visible; filter: drop-shadow(0 0 4px color-mix(in srgb, var(--sw-dot, #ffa04a) 55%, transparent)); }
+.brand h1 .jet .c1 { stop-color: var(--logo-from, #ff3fd2); }
+.brand h1 .jet .c2 { stop-color: var(--sw-dot, #ffa04a); }
+.brand h1 .jet .t0 { stop-color: var(--logo-from, #ff3fd2); stop-opacity: 0; }
+.brand h1 .jet .t1 { stop-color: var(--logo-from, #ff3fd2); stop-opacity: 0.85; }
+.brand h1 .jet .trail { stroke: url(#jettrail); stroke-width: 2.4; stroke-linecap: round; fill: none; }
+.brand h1 .jet .trail.thin { stroke-width: 1.3; opacity: 0.6; }
 .brand p { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 
 .search { position: relative; flex: 1 1 200px; max-width: 300px; }
@@ -691,7 +693,7 @@ body.standalone .mponly { display: none; } /* claude.ai-only features, hidden on
   --sw-hot: #b3157f; --sw-hot-ink: #ffffff; --sw-glow: rgba(214, 40, 170, 0.22); --sw-edge: rgba(179, 21, 127, 0.3);
   --sw-panel: rgba(255, 255, 255, 0.74); --sw-tag: #a3127a; --sw-raise: #fdf7ff; --sw-off: #eadcf0; --sw-off-ink: #5c3d66;
   --sw-bg: radial-gradient(1000px 700px at 85% -20%, rgba(255, 63, 210, 0.14), transparent 60%), radial-gradient(900px 600px at 0% 0%, rgba(63, 216, 242, 0.12), transparent 60%), linear-gradient(180deg, #fbf3ff, #eef5fb 70%);
-  --sw-title: linear-gradient(90deg, #0a7f9c, #b3157f 60%, #c25a0a); --sw-dot: #c25a0a; --chop-from: #b3157f; --chop-spark: #e0892f;
+  --sw-title: linear-gradient(90deg, #0a7f9c, #b3157f 60%, #c25a0a); --sw-dot: #c25a0a; --logo-from: #b3157f;
   --sw-btn: linear-gradient(90deg, #3fd8f2, #ff5fd8); --sw-btn-ink: #1a0617;
 }
 @media (prefers-color-scheme: dark) {
@@ -699,7 +701,7 @@ body.standalone .mponly { display: none; } /* claude.ai-only features, hidden on
     --sw-hot: #ff3fd2; --sw-hot-ink: #1b0617; --sw-glow: rgba(255, 63, 210, 0.16); --sw-edge: rgba(255, 63, 210, 0.35);
     --sw-panel: rgba(28, 10, 44, 0.62); --sw-tag: #ff8ae0; --sw-raise: #1c0b2b; --sw-off: #2c1a3a; --sw-off-ink: #c9b3d6;
     --sw-bg: radial-gradient(1000px 700px at 80% -20%, rgba(255, 63, 210, 0.18), transparent 60%), linear-gradient(180deg, #13061f, #050912 70%);
-    --sw-title: linear-gradient(90deg, #7ff9ff, #ff3fd2 60%, #ffa04a); --sw-dot: #ffa04a;
+    --sw-title: linear-gradient(90deg, #7ff9ff, #ff3fd2 60%, #ffa04a); --sw-dot: #ffa04a; --logo-from: #ff3fd2;
     --sw-btn: linear-gradient(90deg, #7ff9ff, #ff3fd2); --sw-btn-ink: #14041a;
   }
 }
@@ -707,7 +709,7 @@ body.standalone .mponly { display: none; } /* claude.ai-only features, hidden on
   --sw-hot: #ff3fd2; --sw-hot-ink: #1b0617; --sw-glow: rgba(255, 63, 210, 0.16); --sw-edge: rgba(255, 63, 210, 0.35);
   --sw-panel: rgba(28, 10, 44, 0.62); --sw-tag: #ff8ae0; --sw-raise: #1c0b2b; --sw-off: #2c1a3a; --sw-off-ink: #c9b3d6;
   --sw-bg: radial-gradient(1000px 700px at 80% -20%, rgba(255, 63, 210, 0.18), transparent 60%), linear-gradient(180deg, #13061f, #050912 70%);
-  --sw-title: linear-gradient(90deg, #7ff9ff, #ff3fd2 60%, #ffa04a); --sw-dot: #ffa04a;
+  --sw-title: linear-gradient(90deg, #7ff9ff, #ff3fd2 60%, #ffa04a); --sw-dot: #ffa04a; --logo-from: #ff3fd2;
   --sw-btn: linear-gradient(90deg, #7ff9ff, #ff3fd2); --sw-btn-ink: #14041a;
 }
 body { background: var(--sw-bg); background-color: var(--bg); }
@@ -2005,7 +2007,7 @@ body.tutoring #cuebubble { display: none; } /* the guide says the same thing */
   <div class="sitenote" id="sitenote" role="status" hidden></div>
   <header>
     <div class="brand">
-      <h1>Geo<span class="sr-only">-</span><svg class="chop" viewBox="0 0 46 24" aria-hidden="true" focusable="false"><defs><linearGradient id="chopgrad" x1="0" x2="1"><stop offset="0" class="c1"/><stop offset="1" class="c2"/></linearGradient></defs><path d="M2 14 L32 10 Q37 9.6 39 11.8 Q37 14.4 32 14.5 Z" fill="url(#chopgrad)"/><path class="lines" d="M5 18.5 H20 M9 5.5 H23" stroke-linecap="round"/><path class="spark" d="M41.5 6 L43.5 3.5 M42.5 12 H46 M41.5 17.5 L43.5 20.5" stroke-linecap="round"/></svg>Dojo</h1>
+      <h1>Geo<span class="sr-only">-</span><svg class="jet" viewBox="0 0 46 24" aria-hidden="true" focusable="false"><defs><linearGradient id="jetgrad" x1="0" x2="1"><stop offset="0" class="c1"/><stop offset="1" class="c2"/></linearGradient><linearGradient id="jettrail" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="32" y2="0"><stop offset="0" class="t0"/><stop offset="1" class="t1"/></linearGradient></defs><path class="trail" d="M1 12 H24"/><path class="trail thin" d="M6 16.5 H20"/><path fill="url(#jetgrad)" transform="translate(39 12) scale(1.9)" d="M0 0 L3.2 -0.9 L3.2 -0.25 L-2.2 -0.25 L-5 -4.6 L-6.4 -4.6 L-4.4 -0.25 L-7.4 -0.25 L-8.6 -2 L-9.5 -2 L-8.9 0 L-9.5 2 L-8.6 2 L-7.4 0.25 L-4.4 0.25 L-6.4 4.6 L-5 4.6 L-2.2 0.25 L3.2 0.25 L3.2 0.9 Z"/></svg>Dojo</h1>
       <p id="sub">Field notes from around the world</p>
     </div>
     <label class="search" for="q">
@@ -2479,7 +2481,7 @@ for (const [k, f] of [["m50", "countries-50m.json"], ["m110", "countries-110m.js
 }
 </script>
 <script src="vendor.js"></script>
-<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwqljeiu"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
+<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwqnxthc"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
 <script src="facts.js"></script>
 <script src="countries-info.js"></script>
 <script src="countries-extra.js"></script>
@@ -2487,12 +2489,18 @@ for (const [k, f] of [["m50", "countries-50m.json"], ["m110", "countries-110m.js
 <script>
 // Works offline after the first visit: a service worker keeps a copy of the page, data and libraries.
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  // A new version was published: once it has downloaded, offer a reload to switch to it. The browser
+  // often finds and installs it while this page is still loading (before "updatefound" is listened
+  // for), so the new worker taking over this page counts too.
+  const hadWorker = !!navigator.serviceWorker.controller;
+  let offered = false, tries = 0;
+  const offerUpdate = () => { if (offered || !hadWorker) return; if (!window.atlasSiteNote) { if (tries++ < 40) setTimeout(offerUpdate, 250); return; } offered = true; window.atlasSiteNote("update", "<b>A new version of Geo Dojo is ready.</b>", [["Reload", () => location.reload()], ["Later", () => { const el = document.getElementById("sitenote"); if (el) el.hidden = true; }]]); };
+  navigator.serviceWorker.addEventListener("controllerchange", offerUpdate);
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("sw.js").then((reg) => {
-      // A new version was published: once it has downloaded, offer a reload to switch to it.
       reg.addEventListener("updatefound", () => {
         const w = reg.installing;
-        if (w) w.addEventListener("statechange", () => { if (w.state === "installed" && navigator.serviceWorker.controller && window.atlasSiteNote) window.atlasSiteNote("update", "<b>A new version of Geo Dojo is ready.</b>", [["Reload", () => location.reload()], ["Later", () => { const el = document.getElementById("sitenote"); if (el) el.hidden = true; }]]); });
+        if (w) w.addEventListener("statechange", () => { if (w.state === "installed") offerUpdate(); });
       });
     }).catch(() => {});
   });

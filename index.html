@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-A0431GQrMew27yCrk4dHuKzBn1rrFGesl9AEBpAlIPM=' 'sha256-HUQEEmEjb8AfHQfDpUKcJAItSQ48lBCLv7Kk9DH32hQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-xwCioRn/zGuhCzVs6wuT8gGPDY4EVS0kIK3xGIiZHO0=' 'sha256-HUQEEmEjb8AfHQfDpUKcJAItSQ48lBCLv7Kk9DH32hQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Geo Dojo</title>
@@ -881,6 +881,11 @@ body { background: var(--sw-bg); background-color: var(--bg); }
 .powerbtn .ptip .tapagain { display: none; margin-top: 4px; font: 700 0.78rem var(--font-display); font-style: normal; color: var(--sw-hot); }
 .powerbtn.armed .ptip .tapagain, .powerbtn.auto .ptip .tapagain { display: block; }
 .powerbtn.armed { outline: 2px solid var(--sw-hot); outline-offset: 3px; }
+.pwclue { display: flex; gap: 8px; align-items: center; margin: 8px 0 0; font: 500 0.95rem/1.4 var(--font-body); }
+.halfflag { font-family: var(--font-flag); display: inline-block; font-size: 2.6rem; line-height: 1.1; clip-path: inset(0 50% 0 0); margin-right: -1.3rem; }
+.plives { display: flex; flex-wrap: wrap; gap: 4px; max-width: 250px; }
+.powerlive i { font-style: normal; }
+@media (max-width: 860px) { .plives { max-width: 62vw; } .powerlive i { display: none; } }
 .powerlive { font: 600 0.72rem var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--neon); color: var(--neon-ink); box-shadow: 0 0 10px var(--neon-glow); }
 .powerdrop, .fevernote, .poolnote { margin: 10px 0 0; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--sw-edge); background: var(--sw-raise); font-size: 0.9rem; }
 .poolnote.won { border-color: #e0a52a; background: rgba(255, 211, 107, 0.16); }
@@ -1157,7 +1162,7 @@ html { overflow-x: clip; }
 .powerfx .pgcard kbd { position: absolute; top: 8px; right: 8px; padding: 1px 6px; border-radius: 5px; border: 1px solid var(--sw-edge); font: 600 0.68rem var(--font-mono); color: var(--muted); }
 .powerfx .pglater { margin-top: 4px; padding: 8px 14px; min-height: 40px; border: 0; background: none; color: #e9dcf5; font: 600 0.85rem var(--font-display); text-decoration: underline; cursor: pointer; }
 .powerfx.go .pgcard { animation: mUp 0.4s 0.3s ease-out both; }
-@media (max-width: 860px) { .powerfx.pick { gap: 4px; padding: 6px; } .powerfx.pick .pgtitle { font-size: 1.05rem; } .powerfx.pick .pgname { font-size: 0.9rem; } .powerfx .pgcard small { font-size: 0.74rem; line-height: 1.25; } .powerfx .pglater { min-height: 32px; padding: 4px 12px; margin: 0; } .powerfx .pgcard kbd { display: none; } .powerfx .pgcards { gap: 8px; } .powerfx .pgcard { padding: 10px 8px; } .powerfx .pgcard .pgorb { width: 48px; font-size: 1.3rem; } .pmeter .pmbar { width: 56px; } }
+@media (max-width: 860px) { .powerfx.pick { gap: 4px; padding: 6px; } .powerfx.pick .pgtitle { font-size: 1.05rem; } .powerfx.pick .pgname { font-size: 0.9rem; } .powerfx .pgcard small { font-size: 0.74rem; line-height: 1.25; } .powerfx .pglater { min-height: 32px; padding: 4px 12px; margin: 0; } .powerfx .pgcard kbd { display: none; } .powerfx .pgcards { gap: 8px; } .powerfx .pgcard { padding: 10px 8px; } .powerfx .pgcard .pgorb { width: 48px; font-size: 1.3rem; } .pmeter .pmbar { width: 56px; } .globe-wrap:has(#powerfx.pick) .power.ondock { visibility: hidden; } }
 #qplay.onetap #qsteps, #qplay.onetap #qkb, #qplay.onetap #qlock { display: none; }
 /* Players who have finished a game know the steps: the chips go. */
 body.seasoned #qsteps { display: none; }
@@ -2293,7 +2298,7 @@ body.tutoring #cuebubble { display: none; } /* the guide says the same thing */
             </ul>
             <h4>Power-ups and rewards</h4>
             <ul>
-              <li><b>Power-ups:</b> the ⚡ power meter on the globe fills with every right answer and faster with a perfect one. When it's full, you choose one of two power-ups: one that helps you find the answer (½ 50/50, 🔦 Spotlight, or ❄ Freeze in timed games) and one for your score (×2 Double up, 🛡 Shield, ↻ Second chance, or ♥ Extra life in Survival). Up to 4 choices a round (8 in Survival). Hold up to three; they last for the round. Everyone also gets a free ↻ Second chance each day.</li>
+              <li><b>Power-ups:</b> the ⚡ power meter on the globe fills with every right answer and faster with a perfect one. When it's full, you choose one of two power-ups: one that helps you find the answer and one for your score. Up to 4 choices a round (8 in Survival). Hold up to three; they last for the round. Everyone also gets a free ↻ Second chance each day.<details class="tutmore"><summary>See every power-up</summary><ul class="tppowers" id="pwall"></ul></details></li>
               <li><b>Head start:</b> rewards from outside a round (daily login, missions, collections, <span class="mponly">the weekly league, </span>a prize chest) fill your power meter before the next round begins. At 100% you start with a choice ready.</li>
               <li><b>Daily login:</b> claim a power boost once a day along a 7-day row that builds to the biggest on day 7. Miss one day and it waits for you.</li>
               <li><b>Passport sets:</b> stamp every place on a continent to complete its set, for a badge and a full power meter.</li>
@@ -2492,7 +2497,7 @@ for (const [k, f] of [["m50", "countries-50m.json"], ["m110", "countries-110m.js
 }
 </script>
 <script src="vendor.js"></script>
-<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwrc50qq"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
+<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwrij596"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
 <script src="facts.js"></script>
 <script src="countries-info.js"></script>
 <script src="countries-extra.js"></script>

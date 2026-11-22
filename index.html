@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-6iGlBy5f9vAK7UXDAKD6G7uTCAy7p54XY2mTNex21mo=' 'sha256-HUQEEmEjb8AfHQfDpUKcJAItSQ48lBCLv7Kk9DH32hQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5rV8fsiLrxZePbXL6D19ysefa81j5qNZTa/qBoFV4/Y=' 'sha256-A0431GQrMew27yCrk4dHuKzBn1rrFGesl9AEBpAlIPM=' 'sha256-HUQEEmEjb8AfHQfDpUKcJAItSQ48lBCLv7Kk9DH32hQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Geo Dojo</title>
@@ -1714,6 +1714,17 @@ body.playing .stage { grid-template-rows: minmax(0, 1fr); }
 @media (max-width: 420px) {
   .seg b { font-size: 0.78rem; letter-spacing: -0.02em; }
 }
+@media (max-width: 860px) { .modes:has(#mode-versus[hidden]) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* Tight phone menus put each icon above its word (four tabs on any phone, three only on the narrowest). */
+@media (max-width: 480px) {
+  .modes:has(#mode-versus:not([hidden])) { grid-template-columns: repeat(4, auto); }
+  .modes:has(#mode-versus:not([hidden])) button { flex-direction: column; gap: 1px; padding: 3px 1px; font-size: 0.75rem; line-height: 1.15; }
+  .modes:has(#mode-versus:not([hidden])) .mi { width: 17px; height: 17px; }
+}
+@media (max-width: 359px) {
+  .modes button { flex-direction: column; gap: 1px; padding: 3px 1px; font-size: 0.75rem; line-height: 1.15; }
+  .modes .mi { width: 17px; height: 17px; }
+}
 #qsettings:not([hidden]) ~ #qback { display: none; }
 /* The shared jackpot box gets the same padding as the other boxes on the Quiz menu. */
 .poolbox { padding: 12px 14px; border-radius: 16px; }
@@ -2481,7 +2492,7 @@ for (const [k, f] of [["m50", "countries-50m.json"], ["m110", "countries-110m.js
 }
 </script>
 <script src="vendor.js"></script>
-<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwqnxthc"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
+<script>window.ATLAS_STANDALONE = true; window.ATLAS_BUILD = "mwrc50qq"; window.ATLAS_SITE_URL ??= "https://geo-dojo.github.io/"; window.ATLAS_MOVED_FROM ??= ["curiousatlas.github.io"];</script>
 <script src="facts.js"></script>
 <script src="countries-info.js"></script>
 <script src="countries-extra.js"></script>
